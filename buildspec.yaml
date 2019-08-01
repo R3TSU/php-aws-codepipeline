@@ -1,11 +1,15 @@
 version: 0.2
 phases:
+  install:
+    runtime-versions:
+        php: 7.3
   pre_build:
     commands:
       - echo Build prepared on `date`
       - chmod +x ./scripts/*
   build:
     commands:
+      - php --version
       - echo Build started on `date`
       - echo Installing composer deps
       - ./scripts/config.sh
