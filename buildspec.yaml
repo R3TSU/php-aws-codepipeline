@@ -1,0 +1,19 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - echo Build prepared on `date`
+      - chmod +x ./scripts/*
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Installing composer deps
+      - ./scripts/config.sh
+      - ./scripts/build.sh
+  post_build:
+    commands:
+      - echo Build completed on `date`
+artifacts:
+  type: zip
+  files:
+    - '**/*'
