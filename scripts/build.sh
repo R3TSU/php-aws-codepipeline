@@ -1,5 +1,5 @@
 #!/bin/bash
-echo 'Running build.sh'
+echo 'Downloading composer.phar'
 EXPECTED_SIGNATURE="$(wget -q -O - https://composer.github.io/installer.sig)"
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 ACTUAL_SIGNATURE="$(php -r "echo hash_file('sha384', 'composer-setup.php');")"
@@ -14,7 +14,7 @@ fi
 php composer-setup.php --quiet
 RESULT=$?
 rm composer-setup.php
-exit $RESULT
-
-
+echo 'Finished downloading composer.phar'
+echo 'Installing composer'
 php composer.phar install --no-progress --no-suggest --no-dev
+echo 'Finished Installing composer'
